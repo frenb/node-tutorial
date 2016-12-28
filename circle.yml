@@ -46,13 +46,13 @@ dependencies:
 #
 # Add your test commands here
 #
-# Just like in STAGE 2, circleci will detect many types of frameworks and automatically
-# run the appropriate test script.
-#
-# For example, if nodejs is detected, circleci will automatically run "npm test"
+# For example, if your have a nodejs project, you should add "- npm test" under override
 #
 # Test can have the usal pre, override, and post sections
-
+#
+# pre: in this section you should build your docker file, and if you need to run the server separately to test it then you need to run the containr
+# override: in this section you should execute teh scripts inside the docker container
+# post: you should stop the docker container
 
 test:
   # examples:
@@ -62,10 +62,12 @@ test:
   #     - php ./test-suite/run.php --unit-tests
   #     - make test 
   
+  pre:
+    - docker build -t "$CIRCLE_PROJECT_REPONAME" . -t $CIRCLE_PROJECT_REPONAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
   override:
-    - npm test
-
-
+    - docker exec -it $CIRCLE_PROJECT_REPONAME "npm test"
+  post:
+  
 #--STAGE 4: DEPLOY CODE---#
 # Customize your deployment commands (if necessary)
 # Example below can be left as is for most Gigster projects
