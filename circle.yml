@@ -82,7 +82,7 @@ deployment:
   # 
   prod:
     branch: master
-    owner: $YOUR_GITHUB_USER_NAME
+    owner: frenb
     commands:
       - ./deploy.sh
   
