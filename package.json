@@ -1,13 +1,15 @@
 {
   "name": "node-tutorial",
   "dependencies": {
-    "express": "4.14"
+    "express": "4.14",
+    "supertest": "2.0.1"
   },
   "engines": {
     "node": "6.9"
   },
   "scripts": 
   {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha -R spec spec.js"
   }
 }
