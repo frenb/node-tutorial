@@ -63,7 +63,7 @@ test:
   #     - make test 
   
   pre:
-    - docker build -t "$CIRCLE_PROJECT_REPONAME" . -t $CIRCLE_PROJECT_REPONAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+    - docker build "$CIRCLE_PROJECT_REPONAME" . -t $CIRCLE_PROJECT_REPONAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
   override:
     - docker exec -it $CIRCLE_PROJECT_REPONAME "npm test"
   post:
