@@ -52,7 +52,8 @@ dependencies:
 # For example, if nodejs is detected, circleci will automatically run "npm test"
 #
 # Test can have the usal pre, override, and post sections
-#
+
+
 test:
   # examples:
   #
@@ -62,8 +63,8 @@ test:
   #     - make test 
 
 #--STAGE 4: DEPLOY CODE---#
-  # Customize your deployment commands (if necessary)
-  # Example below can be left as is for most Gigster projects
+# Customize your deployment commands (if necessary)
+# Example below can be left as is for most Gigster projects
 
 deployment:
   # examples:
