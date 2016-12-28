@@ -61,6 +61,10 @@ test:
   #   override:
   #     - php ./test-suite/run.php --unit-tests
   #     - make test 
+  
+  override:
+    - npm test
+
 
 #--STAGE 4: DEPLOY CODE---#
 # Customize your deployment commands (if necessary)
