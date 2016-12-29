@@ -14,7 +14,7 @@ machine:
   #
   # environment:
   #   DB_URL_MONGO: mongodb://127.0.0.1:2017/test
-  
+    KUBECONFIG: $PWD/k8s/kubeconfig.yml  
 #---STAGE 2: INSTALL DEPENDENCIES---#
 #
 # Circle automatically detects the dependencies for many types of frameworks
