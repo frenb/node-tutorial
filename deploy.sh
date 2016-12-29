@@ -18,6 +18,14 @@
 # more bash-friendly output for jq
 JQ="jq --raw-output --exit-status"
 
+k8s_config(){
+    envsubst < k8s/kubconfig.yml.template > k8s/kubconfig.yml
+}
+
+k8s_deploy(){
+   kubectl rolling-update $CIRCLE_PROJECT_REPONAME --image=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+}
+
 configure_aws_cli(){
     aws --version
     aws configure set default.region $AWS_DEFAULT_REGION
@@ -31,3 +39,6 @@ push_ecr_image(){
 
 configure_aws_cli
 push_ecr_image
+k8s_config
+k8s_deploy
+
