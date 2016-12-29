@@ -1,7 +1,7 @@
 {
   "name": "node-tutorial",
   "dependencies": {
-    "express": "4.14",
+    "express": "4.14"
   },
   "engines": {
     "node": "6.9"
