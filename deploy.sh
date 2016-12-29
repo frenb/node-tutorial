@@ -19,7 +19,7 @@
 JQ="jq --raw-output --exit-status"
 
 k8s_config(){
-    envsubst < k8s/kubeconfig.yml.template > k8s/kubconfig.yml
+    envsubst < k8s/kubeconfig.yml.template > k8s/kubeconfig.yml
 }
 
 k8s_deploy(){
