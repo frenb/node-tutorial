@@ -35,7 +35,9 @@ FROM node:6.9
 #   RUN apt-get update && apt-get install -y mongodb
 
 RUN apt-get -y update
+RUN npm install mocha -g
 RUN mkdir /node-tutorial
+
 # WORKDIR - Set your working directory
 #
 # example:
