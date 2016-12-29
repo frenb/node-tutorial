@@ -49,7 +49,7 @@ dependencies:
 # Test can have the usal pre, override, and post sections
 #
 # pre: in this section you should build your docker file, and if you need to run the server separately to test it then you need to run the containr
-# override: in this section you should execute teh scripts inside the docker container
+# override: in this section you should execute the scripts inside the docker container
 # post: you should stop the docker container
 
 test:
@@ -62,7 +62,8 @@ test:
   
   pre:
     - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM .
-    - docker run --name $CIRCLE_PROJECT_REPONAME -p 3000:3000 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM 
+    - docker run --name $CIRCLE_PROJECT_REPONAME -p 3000:3000 -d $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM 
+    - sleep 1m
   override:
     - npm test
   post:
