@@ -24,7 +24,7 @@ k8s_config(){
 
 k8s_deploy(){
    kubectl set image deployment/$CIRCLE_PROJECT_REPONAME \
-     $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+     $CIRCLE_PROJECT_REPONAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
 }
 
 configure_aws_cli(){
