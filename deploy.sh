@@ -26,7 +26,7 @@ configure_aws_cli(){
 
 push_ecr_image(){
     eval $(aws ecr get-login --region $AWS_DEFAULT_REGION)
-    docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+    docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
 }
 
 configure_aws_cli
