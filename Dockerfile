@@ -56,7 +56,9 @@ COPY . .
 # 
 # patch example:
 #   RUN cp patches/SOME_FILE.js node_modules/restify/lib/SOME_FILE.js 
+
 RUN npm install
+
 #---STAGE 4. INITIATE THE JOB / SERVICE---#
 #
 # CMD - Run the command for your service or job
