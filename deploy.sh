@@ -39,7 +39,7 @@ k8s_config(){
 # below command updates the image used by the kubernetes deployment to point to the 
 # most recent  build of your docker container
 k8s_deploy(){
-   kubectl set image deployment $CIRCLE_PROJECT_REPONAME $CIRCLE_PROJECT_REPONAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+   kubectl set image deployments $CIRCLE_PROJECT_REPONAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
 }
 
 # Configures the AWS CLI
