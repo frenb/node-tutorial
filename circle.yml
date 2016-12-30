@@ -1,6 +1,6 @@
-#---STAGE 1: CUSTOMIZE THE TEST MACHINE---#
+#---SECTION 1: CUSTOMIZE THE TEST MACHINE---#
 #
-# Setting up you test environment has two key parts: 
+# Setting up your test environment has two key parts: 
 # (1) determining which circleci services to use
 # (2) setting environment variables
 #
@@ -16,7 +16,8 @@ machine:
   #   DB_URL_MONGO: mongodb://127.0.0.1:2017/test
     KUBECONFIG: $PWD/$CIRCLE_PROJECT_REPONAME/k8s/kubeconfig.yml
     PATH: $PATH:$PWD/$CIRCLE_PROJECT_REPONAME/kubernetes/client/bin  
-#---STAGE 2: INSTALL DEPENDENCIES---#
+
+#---SECTION 2: INSTALL DEPENDENCIES---#
 #
 # Circle automatically detects the dependencies for many types of frameworks
 # e.g., Ruby's Gemfile, Python's requirements.txt, and Node.js's package.json
@@ -44,7 +45,7 @@ dependencies:
     - tar -xvzf kubernetes.tar.gz
     - echo “Y” | kubernetes/cluster/get-kube-binaries.sh
 
-#---STAGE 3: RUN TESTS ---#
+#---SECTION 3: RUN TESTS ---#
 #
 # Add your test commands here
 #
@@ -54,7 +55,6 @@ dependencies:
 #
 # pre: in this section you should build your docker file, and if you need to run the server separately to test it then you need to run the containr
 # override: in this section you should execute the scripts inside the docker container
-# post: you should stop the docker container
 
 test:
   # examples:
@@ -72,7 +72,7 @@ test:
     - npm test
   post:
   
-#--STAGE 4: DEPLOY CODE---#
+#--SECTION 4: DEPLOY CODE---#
 # Customize your deployment commands (if necessary)
 # Example below can be left as is for most Gigster projects
 
@@ -91,4 +91,3 @@ deployment:
     owner: frenb
     commands:
       - ./deploy.sh
-  
