@@ -42,10 +42,6 @@ k8s_deploy(){
    kubectl apply -f k8s/deployment.yml 
 }
 
-heroku_deploy(){
-   git push heroku master
-}
-
 # Configures the AWS CLI
 configure_aws_cli(){
     aws --version
@@ -62,7 +58,6 @@ push_ecr_image(){
 
 configure_aws_cli
 push_ecr_image
-heroku_deploy
 
 # use below for kubernetes deployments
 if [ $K8S_DEPLOY == "TRUE" ]; then
