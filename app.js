@@ -11,21 +11,14 @@ var app = express();
 *  over other ports on Heroku.
 */
 
-// sets variable PORT to environment variable PORT
-var PORT = process.env.PORT;
-
-if(PORT === undefined)
-{
-  // checks to see if PORT was defined, and if not sets PORT to 3000
-  PORT=3000;
-}
+// sets variable PORT to environment variable PORT, and if undefined to port 3000
+var port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
   res.send('Hello great, grand world of Gigster!!')
 })
 
-var server = app.listen(PORT, function () {
-  var port = server.address().port;
+var server = app.listen(port, function () {
   console.log('Example app listening on port %s!', port)
 })
 
