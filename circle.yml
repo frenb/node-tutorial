@@ -14,7 +14,7 @@ machine:
   #
   # environment:
   #   DB_URL_MONGO: mongodb://127.0.0.1:2017/test
-    KUBECONFIG: $PWD/$CIRCLE_PROJECT_REPONAME/k8s/kubeconfig.yml
+  #   KUBECONFIG: $PWD/$CIRCLE_PROJECT_REPONAME/k8s/kubeconfig.yml
     PATH: $PATH:$PWD/$CIRCLE_PROJECT_REPONAME/kubernetes/client/bin  
 
 #---SECTION 2: INSTALL DEPENDENCIES---#
@@ -37,13 +37,17 @@ dependencies:
   #     - npm install --only=dev # this overrides the default npm install with a call that includes an environment
   #   post:
   #     - ./patch_files.sh
+  #     - wget https://github.com/kubernetes/kubernetes/releases/download/v1.5.0-beta.2/kubernetes.tar.gz
+  #     - tar -xvzf kubernetes.tar.gz
+  #     - echo “Y” | kubernetes/cluster/get-kube-binaries.sh
   pre:
   override:
   post:
     - npm install mocha@3.2.0 -g
-    - wget https://github.com/kubernetes/kubernetes/releases/download/v1.5.0-beta.2/kubernetes.tar.gz
-    - tar -xvzf kubernetes.tar.gz
-    - echo “Y” | kubernetes/cluster/get-kube-binaries.sh
+    - add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./" 
+    - curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add - 
+    - apt-get update
+    - apt-get install heroku
 
 #---SECTION 3: RUN TESTS ---#
 #

@@ -42,6 +42,10 @@ k8s_deploy(){
    kubectl set image deployment/$CIRCLE_PROJECT_REPONAME $CIRCLE_PROJECT_REPONAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
 }
 
+heroku_deploy(){
+   git push heroku master
+}
+
 # Configures the AWS CLI
 configure_aws_cli(){
     aws --version
@@ -59,5 +63,7 @@ push_ecr_image(){
 # calls each method defined above in the correct sequence
 configure_aws_cli
 push_ecr_image
-k8s_config
-k8s_deploy
+heroku_deploy
+# use below for kubernets deployments
+# k8s_config
+# k8s_deploy
