@@ -9,7 +9,13 @@
 # Pre-reqs:
 #   The following environment variables must be set in your circleci’s projects settings
 #     + AWS_DEFAULT_REGION
-#     + AWS_ACCOUNT_ID  
+#     + AWS_ACCOUNT_ID
+#
+# --- Below environment variables are for kubernetes deployments ---#
+#     You'll need to set K8S_DEPLOY=TRUE in CircleCI project settings
+#     for the kubernetes deployments steps to execute.
+#     
+#     + K8S_DEPLOY
 #     + K8S_CERTIFICATE_AUTHORITY_DATA
 #     + K8S_CLIENT_CERTIFICATE_DATA
 #     + K8S_CLIENT_KEY_DATA
