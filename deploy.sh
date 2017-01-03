@@ -39,7 +39,7 @@ k8s_config(){
 # below command updates the image used by the kubernetes deployment to point to the 
 # most recent  build of your docker container
 k8s_deploy(){
-   kubectl set image deployment/$CIRCLE_PROJECT_REPONAME $CIRCLE_PROJECT_REPONAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+   kubectl apply -f k8s/deployment.yml 
 }
 
 heroku_deploy(){
@@ -60,10 +60,10 @@ push_ecr_image(){
     docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
 }
 
-# calls each method defined above in the correct sequence
 configure_aws_cli
 push_ecr_image
 heroku_deploy
+
 # use below for kubernets deployments
 # k8s_config
 # k8s_deploy
