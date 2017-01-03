@@ -15,7 +15,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
-  res.send('Hello great, grand world of Gigster!!')
+  res.send('Hello Gigster!!')
 })
 
 var server = app.listen(port, function () {
