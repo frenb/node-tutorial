@@ -64,6 +64,8 @@ configure_aws_cli
 push_ecr_image
 heroku_deploy
 
-# use below for kubernets deployments
-# k8s_config
-# k8s_deploy
+# use below for kubernetes deployments
+if [ $K8S_DEPLOY == "TRUE" ]; then
+    k8s_config
+    k8s_deploy
+fi
