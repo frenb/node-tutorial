@@ -61,7 +61,14 @@ COPY . .
 
 RUN npm install
 
-#---SECTION 4. INITIATE THE JOB / SERVICE---#
+#---SECTION 4. EXPOSE PORTS---#
+# 
+# EXPOSE informs Docker that the container listens on the specified network ports at runtime. 
+# You can expose one port number and publish it externally under another number.
+
+EXPOSE 80:3000
+
+#---SECTION 5. INITIATE THE JOB / SERVICE---#
 #
 # CMD - Run the command for your service or job
 # if you are running a service, you'll want to make sure the process
