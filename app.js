@@ -3,17 +3,20 @@ var app = express();
 
 /*--- SECTION BELOW IS FOR HEROKU DEPLOYMENT---
 *
-*  Heroku set the environment variable PORT in the dyno
-*  your docker image is running on. 
+*  Heroku sets the environment variable PORT in the dyno
+*  your docker image is running on.
 *
 *  You need to run your service on PORT to forward requests
-*  externally over port 80. Other ports are not accessible via
-*  Heroku.
+*  externally over port 80. Services cannot be directly exposed
+*  over other ports on Heroku.
 */
+
+// sets variable PORT to environment variable PORT
 var PORT = process.env.PORT;
 
 if(PORT === undefined)
 {
+  // checks to see if PORT was defined, and if not sets PORT to 3000
   PORT=3000;
 }
 
