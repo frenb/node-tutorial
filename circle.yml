@@ -40,7 +40,6 @@ dependencies:
   #     - wget https://github.com/kubernetes/kubernetes/releases/download/v1.5.0-beta.2/kubernetes.tar.gz
   #     - tar -xvzf kubernetes.tar.gz
   #     - echo “Y” | kubernetes/cluster/get-kube-binaries.sh
-  #     - export PATH=$PATH:$PWD/kubernetes/client/bin
   pre:
   override:
   post:
@@ -48,7 +47,6 @@ dependencies:
     - tar -xvzf kubernetes.tar.gz
     - echo “Y” | kubernetes/cluster/get-kube-binaries.sh
     - npm install mocha@3.2.0 -g
-    - export PATH=$PATH:$PWD/kubernetes/client/bin
 
 #---SECTION 3: RUN TESTS ---#
 #

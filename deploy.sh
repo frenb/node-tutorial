@@ -45,7 +45,7 @@ k8s_config(){
 # below command updates the image used by the kubernetes deployment to point to the 
 # most recent  build of your docker container
 k8s_deploy(){
-   kubectl apply -f k8s/deployment.yml 
+   kubernetes/client/bin/kubectl apply -f k8s/deployment.yml 
 }
 
 # Configures the AWS CLI
