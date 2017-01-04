@@ -41,13 +41,14 @@ JQ="jq --raw-output --exit-status"
 # only used if K8S_DEPLOY = "TRUE"
 k8s_config(){
     envsubst < k8s/kubeconfig.yml.template > k8s/kubeconfig.yml
+    envsubst < k8s/deployment.yml > k8s/deployment-merged.yml
 }
 
 # below command updates the image used by the kubernetes deployment to point to the 
 # most recent  build of your docker container.
 # only used if K8S_DEPLOY = "TRUE"r
 k8s_deploy(){
-   kubectl apply -f k8s/deployment.yml 
+   kubectl apply -f k8s/deployment-merged.yml 
 }
 
 # Configures the AWS CLI
