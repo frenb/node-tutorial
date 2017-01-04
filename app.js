@@ -15,7 +15,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
-  res.send('Hello Gigster on heroku + kubernetes!! wow!! wee!! wowza!! zigzag!! blah!!')
+  res.send('Hello Gigster!!')
 })
 
 var server = app.listen(port, function () {

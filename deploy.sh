@@ -14,7 +14,7 @@
 # --- Below environment variables are for kubernetes deployments ---#
 #     You'll need to set K8S_DEPLOY=TRUE in CircleCI project settings
 #     for the kubernetes deployments steps to execute.
-#     
+#
 #     + K8S_DEPLOY
 #     + K8S_CERTIFICATE_AUTHORITY_DATA
 #     + K8S_CLIENT_CERTIFICATE_DATA
@@ -37,15 +37,17 @@ JQ="jq --raw-output --exit-status"
 # creates the kubenconfig file required to enable circleci to update your kubernetes
 # deployment. It works by taking the environment variables set up in your circle.yml
 # file (described in step 5.7 of the Gigster standard deployment process guide) and
-# and merging them with the kubeconfig.yml.template
+# and merging them with the kubeconfig.yml.template.
+# only used if K8S_DEPLOY = "TRUE"
 k8s_config(){
     envsubst < k8s/kubeconfig.yml.template > k8s/kubeconfig.yml
 }
 
 # below command updates the image used by the kubernetes deployment to point to the 
-# most recent  build of your docker container
+# most recent  build of your docker container.
+# only used if K8S_DEPLOY = "TRUE"r
 k8s_deploy(){
-   kubernetes/client/bin/kubectl apply -f k8s/deployment.yml 
+   kubectl apply -f k8s/deployment.yml 
 }
 
 # Configures the AWS CLI
@@ -56,8 +58,9 @@ configure_aws_cli(){
 }
 
 # pushes the ECR image to the AWS elastic container registry (ECR)
+# only used if K8S_DEPLOY = "TRUE"
 push_ecr_image(){
-    # line below genereates the ecr login, and then uses eval to execute it
+    # line below generates the ecr login command, and then uses eval to execute it
     eval $(aws ecr get-login --region $AWS_DEFAULT_REGION)
     docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
 }
