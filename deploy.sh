@@ -51,6 +51,11 @@ k8s_deploy(){
    kubectl apply -f k8s/deployment-merged.yml 
 }
 
+heroku_deploy(){
+ "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+ git push git@heroku.com:smoking-reef-55555.git $CIRCLE_SHA1:refs/heads/master
+ heroku run rake db:migrate --app $HEROKU_APP_NAME:timeout:400
+}
 # Configures the AWS CLI
 configure_aws_cli(){
     aws --version
@@ -73,4 +78,8 @@ push_ecr_image
 if [ $K8S_DEPLOY == "TRUE" ]; then
     k8s_config
     k8s_deploy
+fi
+
+if [ $HEROKU_DEPLOY == "TRUE" ]; then
+    heroku_deploy
 fi
