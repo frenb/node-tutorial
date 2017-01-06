@@ -52,8 +52,17 @@ k8s_deploy(){
 }
 
 heroku_deploy(){
- [[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow
- git push git@heroku.com:$HEROKU_APP_NAME.git $CIRCLE_SHA1:refs/heads/master
+    [[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow
+    git push git@heroku.com:$HEROKU_APP_NAME.git $CIRCLE_SHA1:refs/heads/master
+}
+
+ecs_deploy(){
+    envsubst < docker-compose.yml.template > docker-compose.yml
+    ecs-cli configure --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER
+    ecs-cli compose \
+    --project-name $CIRCLE_USERNAME-$CIRCLE_PROJECT_NAME \
+    --file docker-compose.yml \
+    service create
 }
 
 # Configures the AWS CLI
@@ -82,4 +91,8 @@ fi
 
 if [ $HEROKU_DEPLOY == "TRUE" ]; then
     heroku_deploy
+fi
+
+if [ $ECS_DEPLOY == "TRUE" ]; then
+   ecs_deploy
 fi

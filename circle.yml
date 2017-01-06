@@ -46,6 +46,8 @@ dependencies:
     - wget https://github.com/kubernetes/kubernetes/releases/download/v1.5.0-beta.2/kubernetes.tar.gz
     - tar -xvzf kubernetes.tar.gz
     - echo “Y” | kubernetes/cluster/get-kube-binaries.sh
+    - curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-latest
+    - chmod +x /usr/local/bin/ecs-cli
     - npm install mocha@3.2.0 -g
 
 #---SECTION 3: RUN TESTS ---#
