@@ -54,8 +54,8 @@ k8s_deploy(){
 heroku_deploy(){
  [[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow
  git push git@heroku.com:$HEROKU_APP_NAME.git $CIRCLE_SHA1:refs/heads/master
- heroku run rake db:migrate --app $HEROKU_APP_NAME:timeout:400
 }
+
 # Configures the AWS CLI
 configure_aws_cli(){
     aws --version
