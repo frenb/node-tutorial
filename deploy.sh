@@ -58,6 +58,7 @@ heroku_deploy(){
 
 ecs_deploy(){
     envsubst < docker-compose.yml.template > docker-compose.yml
+    export PATH=$PWD:$PATH
     ecs-cli configure --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER
     ecs-cli compose \
     --project-name $CIRCLE_USERNAME-$CIRCLE_PROJECT_REPONAME \
