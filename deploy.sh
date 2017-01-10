@@ -60,7 +60,7 @@ ecs_deploy(){
     envsubst < docker-compose.yml.template > docker-compose.yml
     ecs-cli configure --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER
     ecs-cli compose \
-    --project-name $CIRCLE_USERNAME-$CIRCLE_PROJECT_NAME \
+    --project-name $CIRCLE_USERNAME-$CIRCLE_PROJECT_REPONAME \
     --file docker-compose.yml \
     service create
 }
@@ -77,7 +77,9 @@ configure_aws_cli(){
 push_ecr_image(){
     # line below generates the ecr login command, and then uses eval to execute it
     eval $(aws ecr get-login --region $AWS_DEFAULT_REGION)
+    docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:latest
     docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+    docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:latest
 }
 
 configure_aws_cli
