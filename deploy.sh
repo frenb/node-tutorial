@@ -63,7 +63,8 @@ ecs_deploy(){
     ecs-cli compose \
     --project-name $CIRCLE_USERNAME-$CIRCLE_PROJECT_REPONAME \
     --file docker-compose.yml \
-    service create
+    up
+    #service create
 }
 
 # Configures the AWS CLI
