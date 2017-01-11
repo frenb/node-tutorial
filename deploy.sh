@@ -61,7 +61,7 @@ ecs_deploy(){
     export PATH=$PWD:$PATH
     ecs-cli configure --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER
     ecs-cli compose \
-    --project-name $CIRCLE_USERNAME-$CIRCLE_PROJECT_REPONAME \
+    --project-name $CIRCLE_PROJECT_REPONAME \
     --file docker-compose.yml \
     up
     #service create
